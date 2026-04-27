@@ -71,7 +71,7 @@ jobs:
           pip-audit --format json > pip-audit-report.json || true
       
       - name: Upload dependency report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dependency-reports
           path: pip-audit-report.json
@@ -129,7 +129,7 @@ jobs:
           fi
       
       - name: Upload review report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: code-review-report
           path: review-result.json
