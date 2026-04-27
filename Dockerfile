@@ -1,4 +1,4 @@
-"""Dockerfile for the application"""
+# Dockerfile for the application
 
 FROM python:3.11-slim
 

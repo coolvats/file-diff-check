@@ -29,7 +29,7 @@ class Settings(BaseSettings):
     # File Upload Settings
     MAX_FILE_SIZE: int = 104857600  # 100 MB
     ALLOWED_EXTENSIONS: List[str] = ["*"]
-    UPLOAD_DIRECTORY: str = os.getenv("UPLOAD_DIR", "./uploads")
+    UPLOAD_DIR: str = os.getenv("UPLOAD_DIR", "./uploads")
     
     # LangSmith Configuration
     LANGSMITH_API_KEY: str = os.getenv("LANGSMITH_API_KEY", "")

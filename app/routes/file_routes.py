@@ -1,4 +1,4 @@
-"""File checking routes"""
+# File checking routes
 
 from fastapi import APIRouter, File, UploadFile, HTTPException, BackgroundTasks
 from pathlib import Path
@@ -41,13 +41,13 @@ async def upload_file(file: UploadFile = File(...), background_tasks: Background
             )
         
         # Create upload directory if it doesn't exist
-        os.makedirs(settings.UPLOAD_DIRECTORY, exist_ok=True)
+        os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
         
         # Calculate hash
         file_hash = hashlib.sha256(file_content).hexdigest()
         
         # Save file
-        file_path = Path(settings.UPLOAD_DIRECTORY) / f"{file_hash}_{file.filename}"
+        file_path = Path(settings.UPLOAD_DIR) / f"{file_hash}_{file.filename}"
         async with aiofiles.open(file_path, "wb") as f:
             await f.write(file_content)
         
@@ -63,7 +63,7 @@ async def upload_file(file: UploadFile = File(...), background_tasks: Background
     except HTTPException:
         raise
     except Exception as e:
-        logger.error(f"Error uploading file: {str(e)}")
+        logger.error(f"Error uploading file: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail="Error uploading file")
 
 
