@@ -188,19 +188,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       
-      - name: Send approval request email
-        env:
-          SMTP_SERVER: ${{ secrets.SMTP_SERVER }}
-          SMTP_PORT: ${{ secrets.SMTP_PORT }}
-          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
-          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
-          APPROVAL_EMAIL: ${{ secrets.APPROVAL_EMAIL }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          python scripts/send_approval_email.py \
-            --pr-number ${{ github.event.pull_request.number }} \
-            --commit-sha ${{ github.event.pull_request.head.sha }} \
-            --review-file review-result.json
+
       
       - name: Comment on PR with status
         uses: actions/github-script@v6
@@ -223,7 +211,7 @@ jobs:
               }
             }
             
-            comment += '\n**Action**: Approval required for deployment. Check email for approval link.';
+            comment += '\n**Action**: Approval will be handled by Langsmith fleet agent.';
             
             github.rest.issues.createComment({
               issue_number: context.issue.number,

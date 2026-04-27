@@ -36,12 +36,7 @@ class Settings(BaseSettings):
     LANGSMITH_ENDPOINT: str = os.getenv("LANGSMITH_ENDPOINT", "https://api.smith.langchain.com")
     LANGSMITH_PROJECT: str = os.getenv("LANGSMITH_PROJECT", "file-duplicate-checker")
     
-    # Email Configuration
-    SMTP_SERVER: str = os.getenv("SMTP_SERVER", "smtp.gmail.com")
-    SMTP_PORT: int = int(os.getenv("SMTP_PORT", 587))
-    SMTP_USERNAME: str = os.getenv("SMTP_USERNAME", "")
-    SMTP_PASSWORD: str = os.getenv("SMTP_PASSWORD", "")
-    APPROVAL_EMAIL: str = os.getenv("APPROVAL_EMAIL", "vatsalyamishra93@gmail.com")
+
     
     # GitHub Configuration
     GITHUB_TOKEN: str = os.getenv("GITHUB_TOKEN", "")
