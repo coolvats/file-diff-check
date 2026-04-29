@@ -79,14 +79,16 @@ def run_fleet_agent(
     )
 
 
-    result = client.run(
-        "pr_commit_history_agent",  # ✅ Fleet agent name
-        inputs={
-            "repository": repo,
-            "pr_number": pr_number,
-            "commits": commits
-        }
-    )
+
+result = client.invoke(
+    "pr_commit_history_agent",
+    {
+        "repository": repo,
+        "pr_number": pr_number,
+        "commits": commits
+    }
+)
+
 
     return result
 
