@@ -70,7 +70,14 @@ def run_fleet_agent(
     """
     Sends commit history to LangSmith Fleet PR Commit History Agent
     """
-    client = Client()
+    
+    if not os.environ.get("LANGSMITH_API_KEY"):
+        raise RuntimeError("LANGSMITH_API_KEY is not set in environment")
+
+    client = Client(
+        api_key=os.environ.get("LANGSMITH_API_KEY")
+    )
+
 
     result = client.run(
         "pr_commit_history_agent",  # ✅ Fleet agent name
